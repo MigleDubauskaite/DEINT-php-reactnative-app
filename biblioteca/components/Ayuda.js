@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { List } from "react-native-paper";
 import {
   View,
   Text,
@@ -11,10 +12,12 @@ import * as LucideIcons from "lucide-react-native";
 export default function Ayuda() {
   const [documentacion, setDocumentacion] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [expanded, setExpanded] = React.useState(true);
+  const handlePress = () => setExpanded(!expanded);
 
   useEffect(() => {
     // Pedimos la documentación al NUEVO archivo PHP en formato JSON
-    fetch("http://localhost:6060/documentacion.php?format=json")
+    fetch("https://espacio199.com/biblioteca/api.php")
       .then((res) => res.json())
       .then((json) => {
         setDocumentacion(json);
@@ -35,25 +38,57 @@ export default function Ayuda() {
 
   return (
     <ScrollView style={styles.screen}>
-      <Text style={styles.title}>Documentación</Text>
+      <Text style={styles.title}>Ayuda</Text>
 
-      {documentacion.map((item, index) => {
-        // Obtenemos el icono dinámicamente según el nombre que viene del PHP
-        const Icono = LucideIcons[item.icono] || LucideIcons.HelpCircle;
+      <List.Section>
+        <List.Accordion
+          title="¿Qué es esta aplicación?"
+          titleStyle={styles.accTitle}
+          style={styles.accBox}
+        >
+          <Text style={styles.text}>
+            Esta aplicación es una biblioteca digital que permite consultar un
+            catálogo de libros y visualizar estadísticas sobre su uso.
+          </Text>
+        </List.Accordion>
 
-        return (
-          <View key={index} style={styles.card}>
-            <View style={styles.iconBox}>
-              <Icono color="#3D45AA" size={24} />
-            </View>
-            <View style={styles.textBox}>
-              <Text style={styles.cardTitle}>{item.seccion}</Text>
-              <Text style={styles.cardDesc}>{item.descripcion}</Text>
-              <Text style={styles.cardDetail}>{item.detalles}</Text>
-            </View>
-          </View>
-        );
-      })}
+        <List.Accordion
+          title="Cómo usar el menú inferior"
+          titleStyle={styles.accTitle}
+          style={styles.accBox}
+        >
+          <Text style={styles.text}>Las secciones disponibles son:</Text>
+          <Text style={styles.bullet}>• Libros</Text>
+          <Text style={styles.bullet}>• Informe de descargas</Text>
+          <Text style={styles.bullet}>• Ayuda</Text>
+        </List.Accordion>
+
+        <List.Accordion
+          title="Sección “Libros”"
+          titleStyle={styles.accTitle}
+          style={styles.accBox}
+        >
+          <Text style={styles.text}>
+            Esta pantalla muestra la información básica del libro y permite
+            navegar por el listado de forma sencilla y clara.
+          </Text>
+        </List.Accordion>
+
+        <List.Accordion
+          title="Sección “Descargas”"
+          titleStyle={styles.accTitle}
+          style={styles.accBox}
+        >
+          <Text style={styles.text}>En esta sección se muestra:</Text>
+          <Text style={styles.bullet}>• El título de cada libro.</Text>
+          <Text style={styles.bullet}>
+            • El número total de descargas realizadas.
+          </Text>
+          <Text style={styles.text}>
+            Esta vista permite comprender el uso real del catálogo.
+          </Text>
+        </List.Accordion>
+      </List.Section>
     </ScrollView>
   );
 }
@@ -61,26 +96,34 @@ export default function Ayuda() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#EBF4F6", padding: 20 },
   title: {
+    textAlign: "center",
     fontSize: 26,
     fontWeight: "bold",
-    color: "#3D45AA",
+    color: "#e21f50",
     marginBottom: 20,
   },
-  card: {
-    flexDirection: "row",
+  accBox: {
     backgroundColor: "#FFF",
-    padding: 15,
     borderRadius: 12,
-    marginBottom: 15,
+    marginBottom: 12,
+    overflow: "hidden",
   },
-  iconBox: { marginRight: 15, justifyContent: "center" },
-  textBox: { flex: 1 },
-  cardTitle: { fontSize: 18, fontWeight: "bold", color: "#333" },
-  cardDesc: { fontSize: 14, color: "#666", marginTop: 4 },
-  cardDetail: {
-    fontSize: 12,
-    color: "#999",
-    fontStyle: "italic",
-    marginTop: 4,
+  accTitle: {
+    fontWeight: "bold",
+    color: "#333",
+  },
+  bullet: {
+    paddingHorizontal: 25,
+    paddingBottom: 6,
+    fontSize: 14,
+    color: "#555",
+    lineHeight: 20,
+  },
+  text: {
+    paddingHorizontal: 15,
+    paddingBottom: 10,
+    fontSize: 14,
+    color: "#555",
+    lineHeight: 20,
   },
 });

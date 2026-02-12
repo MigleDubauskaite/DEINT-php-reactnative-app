@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native';
 
-const API_BASE = 'http://localhost:6060/api.php';
+const API_BASE = 'https://espacio199.com/biblioteca/api.php';
 
 export default function Biblioteca() {
   const [lista, setLista] = useState([]);

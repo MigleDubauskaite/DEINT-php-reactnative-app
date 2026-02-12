@@ -6,6 +6,7 @@ import MenuAbajo from './components/MenuAbajo';
 import Home from './components/Home';
 import Libros from './components/Biblioteca';
 import Ayuda from './components/Ayuda';
+import Descargas from './components/Descargas';
 
 const Estac = createNativeStackNavigator();
 
@@ -23,12 +24,11 @@ function Principal() {
       <View style={{ flex: 1 }}>
         <Estac.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
           <Estac.Screen name="Home" component={Home} />
-          <Estac.Screen name="Libros" component={Libros} />
+          <Estac.Screen name="Descargas" component={Descargas} />
           <Estac.Screen name="Ayuda" component={Ayuda} />
         </Estac.Navigator>
       </View>
 
-      {/* Menú fijo abajo */}
       <MenuAbajo />
     </View>
   );

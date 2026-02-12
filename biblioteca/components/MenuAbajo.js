@@ -1,22 +1,20 @@
-import { View, StyleSheet, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Home, Book, HelpCircle } from "lucide-react-native"; 
+import { View, StyleSheet, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Home, Book, HelpCircle, BarChart3 } from "lucide-react-native";
 
 export default function MenuAbajo() {
   const navigation = useNavigation();
 
   return (
     <View style={styles.menu}>
-      <Pressable onPress={() => navigation.navigate('Home')}>
-        <Home color="#3D45AA" size={26} />
+      <Pressable onPress={() => navigation.navigate("Home")}>
+        <Home color="#e21f50" size={24} />
       </Pressable>
-      
-      <Pressable onPress={() => navigation.navigate('Libros')}>
-        <Book color="#3D45AA" size={26} />
+      <Pressable onPress={() => navigation.navigate("Descargas")}>
+        <BarChart3 color="#005461"  size={24} />
       </Pressable>
-      
-      <Pressable onPress={() => navigation.navigate('Ayuda')}>
-        <HelpCircle color="#3D45AA" size={26} />
+      <Pressable onPress={() => navigation.navigate("Ayuda")}>
+        <HelpCircle color="#e21f50" size={24} />
       </Pressable>
     </View>
   );
@@ -24,11 +22,9 @@ export default function MenuAbajo() {
 
 const styles = StyleSheet.create({
   menu: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     paddingVertical: 15,
-    backgroundColor: '#FFF',
-    borderTopWidth: 1,
-    borderTopColor: '#EEE',
-  }
+    backgroundColor: "#FFF",
+  },
 });

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "bold",
-    color: "#3D45AA",
+    color: "#e21f50",
     marginBottom: 10,
   },
   subtitle: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: 'row',
-    backgroundColor: "#3D45AA",
+    backgroundColor: "#e21f50",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 30,
